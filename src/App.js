@@ -1,8 +1,8 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Header from "./components/Header";
-import Form from './components/Form';
+import Form from "./components/Form";
 
-import CategoriesProvider from './context/CategoriesContext';
+import CategoriesProvider from "./context/CategoriesContext";
 
 function App() {
   return (
