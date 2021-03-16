@@ -1,4 +1,5 @@
-import React, { createContext, useState} from 'react';
+import React, { createContext, useState, useEffect} from 'react';
+import axios from 'axios';
 
 export const RecipesContext = createContext();
 
@@ -9,6 +10,14 @@ const RecipesProvider = (props) => {
         name:"",
         category: ""
     })
+
+    // Use effect que se ejecuta cuando cambia search
+    
+    useEffect(() => {
+        const getRecipes = async () => {
+            const url = 
+        }
+    }, [])
 
     return (
         <RecipesContext.Provider value={{
