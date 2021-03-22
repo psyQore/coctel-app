@@ -17,12 +17,24 @@ function getModalStyle() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    position: "absolute",
+    position: 'absolute',
     width: 400,
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
-  },
+    overflow: 'scroll',
+    height: '100%',
+    maxHeight: 500,
+    display: 'block'
+    },
+    header: {
+    padding: '12px 0',
+    borderBottom: '1px solid darkgrey'
+    },
+    content: {
+    padding: "12px 0",
+    overflow: 'scroll'
+    }
 }));
 
 const Recipe = ({ recipe }) => {
@@ -42,6 +54,20 @@ const Recipe = ({ recipe }) => {
 
   // Extraer los valos del context
   const { inforecipe, saveIdRecipe, setRecipe } = useContext(ModalContext);
+
+  const showInformation = (inforecipe) => {
+    let ingredients = [];
+    for (let i = 1; i < 16; i++) {
+      if (inforecipe[`strIngredient${i}`]) {
+        ingredients.push(
+          <li>
+            {inforecipe[`strIngredient${i}`]} {inforecipe[`strMeasure${i}`]}
+          </li>
+        );
+      }
+    }
+    return ingredients;
+  };
 
   return (
     <div className="col-md-4 mb-3">
@@ -76,13 +102,16 @@ const Recipe = ({ recipe }) => {
               <h2>{inforecipe.strDrink}</h2>
               <h3 className="mt-4">Instrucciones</h3>
 
-              <p>{inforecipe.strIntructions}</p>
+              <p>{inforecipe.strInstructions}</p>
 
               <img
                 className="img-fluid"
                 src={inforecipe.strDrinkThumb}
                 alt={inforecipe.strDrink}
               />
+
+              <h3 className="mt-3">Ingredientes y Cantidades</h3>
+              <ul>{showInformation(inforecipe)}</ul>
             </div>
           </Modal>
         </div>
